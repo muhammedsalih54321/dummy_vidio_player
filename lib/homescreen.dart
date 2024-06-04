@@ -17,7 +17,6 @@ class _VideoAppState extends State<VideoApp> {
   }
 
   void _nextVideoPlay(String videoPath) {
-  
     _startPlay(videoPath);
   }
 
@@ -44,6 +43,14 @@ class _VideoAppState extends State<VideoApp> {
   }
 
   int videoIndex = 0;
+  List vidionames=[
+    'vidio 1',
+     'vidio 2',
+      'vidio 3',
+       'vidio 4',
+        'vidio 5',
+         'vidio 6',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +98,25 @@ class _VideoAppState extends State<VideoApp> {
             child: Text(
               'Next',
               style: TextStyle(color: Colors.white),
-            ))
+            )),
+        Expanded(
+          child: ListView.builder(
+            itemCount: Vidiolist.vidios.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: (){
+                  _startPlay(Vidiolist.vidios[index]);
+              },
+                child: ListTile(
+                  title: Text(
+                    vidionames[index],
+                    style: TextStyle(color: Colors.black, fontSize: 20),
+                  ),
+                ),
+              );
+            },
+          ),
+        )
       ],
     ));
   }
